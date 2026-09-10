@@ -1,8 +1,10 @@
 # Dependencies
+# Ignored at any depth so each task subfolder's own node_modules is excluded
 **/node_modules/
 **/bower_components/
 
 # Build and test output
+# Regenerable via `npm run build` / `npm test` — no need to version-control
 **/dist/
 **/build/
 **/out/
@@ -10,6 +12,9 @@
 **/.nyc_output/
 
 # Environment and local configuration
+# All real .env files are ignored (may contain secrets).
+# .env.example and .env.template are explicitly un-ignored (the "!" prefix)
+# since they're safe placeholder templates meant to be pushed to GitHub.
 **/.env
 **/.env.*
 !**/.env.example
@@ -22,12 +27,16 @@
 **/*.seed
 
 # Tool caches
+# Machine-specific, regenerated automatically — safe to ignore
 **/.cache/
 **/.parcel-cache/
 **/.eslintcache
 **/.tsbuildinfo
 
 # Local editor and operating-system files
+# Personal VS Code settings are ignored, but shared team settings
+# (extensions.json, settings.json) are kept so teammates get the
+# same recommended setup when they clone the repo
 **/.vscode/*
 !**/.vscode/extensions.json
 !**/.vscode/settings.json
