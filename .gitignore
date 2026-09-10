@@ -1,0 +1,36 @@
+# Dependencies
+**/node_modules/
+**/bower_components/
+
+# Build and test output
+**/dist/
+**/build/
+**/out/
+**/coverage/
+**/.nyc_output/
+
+# Environment and local configuration
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.template
+
+# Logs and runtime files
+**/*.log
+**/logs/
+**/*.pid
+**/*.seed
+
+# Tool caches
+**/.cache/
+**/.parcel-cache/
+**/.eslintcache
+**/.tsbuildinfo
+
+# Local editor and operating-system files
+**/.vscode/*
+!**/.vscode/extensions.json
+!**/.vscode/settings.json
+**/.idea/
+**/.DS_Store
+**/Thumbs.db
