@@ -1,0 +1,159 @@
+{
+  "info": {
+    "_postman_id": "019651d3-1bb9-4311-aead-d59e3e519af7",
+    "name": "Elevvo-internship-Level-2-Task-3",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48243340",
+    "_collection_link": "https://go.postman.co/collection/48243340-019651d3-1bb9-4311-aead-d59e3e519af7?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Server-Check-Api",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"Afaq Ahmad\",\r\n    \"useremail\": \"koinahe193@gmail.com\",\r\n    \"userpassword\": \"Afaq@200920017\"\r\n}"
+        },
+        "url": {
+          "raw": "{{Base_URL}}",
+          "host": [
+            "{{Base_URL}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get-users",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{API_SECRIT_KEY}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{Elevvo-internship-Level-2-Task-3-User-Base-URL}}",
+          "host": [
+            "{{Elevvo-internship-Level-2-Task-3-User-Base-URL}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create-new-user",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{API_SECRIT_KEY}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\" : \"Ahmad Ali\",\r\n    \"email\" : \"ahmadAli789@gmail.com\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{Elevvo-internship-Level-2-Task-3-User-Base-URL}}",
+          "host": [
+            "{{Elevvo-internship-Level-2-Task-3-User-Base-URL}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update-existing-user",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{API_SECRIT_KEY}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\" : \"Afaq\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{Elevvo-internship-Level-2-Task-3-User-Base-URL}}/e9065c49-a5e7-4498-895e-f37f7c6cecb8",
+          "host": [
+            "{{Elevvo-internship-Level-2-Task-3-User-Base-URL}}"
+          ],
+          "path": [
+            "e9065c49-a5e7-4498-895e-f37f7c6cecb8"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get-user",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{API_SECRIT_KEY}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{Elevvo-internship-Level-2-Task-3-User-Base-URL}}/03e68399-4908-4989-9409-c90456e1ad51",
+          "host": [
+            "{{Elevvo-internship-Level-2-Task-3-User-Base-URL}}"
+          ],
+          "path": [
+            "03e68399-4908-4989-9409-c90456e1ad51"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete-resource",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "x-api-key",
+            "value": "{{API_SECRIT_KEY}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{Elevvo-internship-Level-2-Task-3-User-Base-URL}}/db81b2fe-393e-4486-afbf-d5ea5809777f",
+          "host": [
+            "{{Elevvo-internship-Level-2-Task-3-User-Base-URL}}"
+          ],
+          "path": [
+            "db81b2fe-393e-4486-afbf-d5ea5809777f"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
