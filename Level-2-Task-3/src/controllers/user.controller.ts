@@ -47,6 +47,6 @@ export const userController = {
       res.status(404).json({ error: "User not found" });
       return;
     }
-    res.status(204).send();
+    res.status(200).json({"message": "User deleted successfully!"});
   },
 };
