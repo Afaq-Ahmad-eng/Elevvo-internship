@@ -8,7 +8,7 @@ export interface User {
 }
 
 // Shape of the payload accepted when creating a user.
-// Note: no "id" or "createdAt" — those are generated server-side.
+// Note: no "id" or "createdAt" those are generated server-side.
 export type CreateUserInput = Omit<User, "id" | "createdAt">;
 
 // Shape of the payload accepted when updating a user.
