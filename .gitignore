@@ -17,8 +17,8 @@
 # since they're safe placeholder templates meant to be pushed to GitHub.
 **/.env
 **/.env.*
-!**/.env.example
-!**/.env.template
+**/.env.example
+**/.env.template
 
 # Logs and runtime files
 **/*.log
