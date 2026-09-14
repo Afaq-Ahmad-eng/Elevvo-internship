@@ -4,10 +4,11 @@
   "description": "Observability & Modular Express API Architecture (Task 3)",
   "main": "dist/server.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
-    "build": "tsc",
-    "start": "node dist/server.js"
-  },
+  "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+  "type-check": "tsc --noEmit",
+  "build": "tsc --noEmit && tsc",
+  "start": "node dist/server.js"
+},
   "keywords": ["express", "typescript", "api"],
   "license": "ISC",
   "dependencies": {
