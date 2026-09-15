@@ -6,8 +6,8 @@ import { requireAPIKey } from "./middlewares/require-api-key.middleware";
 const app: Application = express();
 
 // Global middlewares order matters.
-app.use(observabilityMiddleware); // 1. log every request
-app.use(express.json());          // 2. parse JSON bodies
+app.use(observabilityMiddleware); // log every request
+app.use(express.json());
 
 // Health check (not behind API key, so it's easy to verify server is up)
 app.get("/", (req: Request, res: Response) => {
