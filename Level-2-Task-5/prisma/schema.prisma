@@ -1,0 +1,116 @@
+// Prisma schema for the E-Commerce domain (Task 5).
+//
+// Relationship design:
+// - User  --(1:N)-->  Order      : one user places many orders
+// - Category --(1:N)--> Product  : one category groups many products
+// - Order <--(M:N)--> Product    : implemented via an explicit join model
+//   (OrderItem), because we need extra fields on the relationship itself
+//   (quantity, and the price AT THE TIME OF PURCHASE — prices change over
+//   time, so we snapshot it rather than relying on Product.price later).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  // Supabase requires a separate direct (non-pooled) connection for migrations —
+  // DDL statements aren't reliably supported through the pgbouncer pooler that
+  // DATABASE_URL points to. See .env.example for the distinction.
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  COMPLETED
+  CANCELLED
+}
+
+model User {
+  id           String   @id @default(uuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         Role     @default(USER)
+  createdAt    DateTime @default(now())
+
+  // One-to-Many: a single user can have many orders.
+  orders Order[]
+
+  @@map("users")
+}
+
+model Category {
+  id   String @id @default(uuid())
+  name String @unique
+
+  // One-to-Many: a category groups many products.
+  products Product[]
+
+  @@map("categories")
+}
+
+model Product {
+  id          String  @id @default(uuid())
+  name        String
+  description String?
+  price       Decimal @db.Decimal(10, 2) // fixed-point — never use float for money
+  stock       Int     @default(0)
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  // Many-to-Many with Order, via the explicit OrderItem join model.
+  orderItems OrderItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // NOTE: a database-level CHECK constraint (stock >= 0) would be an extra
+  // safety net here, but it requires enabling a Prisma preview feature
+  // depending on your Prisma version, which we couldn't verify against a
+  // live database in this environment. Negative stock is instead prevented
+  // at the application layer: order.service.ts checks stock BEFORE
+  // decrementing (inside the transaction), and product.controller.ts
+  // rejects stock < 0 on creation. If you want the extra DB-level
+  // guarantee, see Prisma's docs on native database check constraints.
+  @@map("products")
+}
+
+model Order {
+  id     String      @id @default(uuid())
+  status OrderStatus @default(PENDING)
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  // Many-to-Many with Product, via this join model.
+  items OrderItem[]
+
+  createdAt DateTime @default(now())
+
+  @@map("orders")
+}
+
+// Explicit join table for the Order <-> Product many-to-many relationship.
+// Carries its own data (quantity, unitPrice) beyond just linking the two IDs.
+model OrderItem {
+  id String @id @default(uuid())
+
+  orderId String
+  order   Order  @relation(fields: [orderId], references: [id])
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+
+  quantity  Int
+  unitPrice Decimal @db.Decimal(10, 2) // snapshot of Product.price at purchase time
+
+  @@map("order_items")
+}
