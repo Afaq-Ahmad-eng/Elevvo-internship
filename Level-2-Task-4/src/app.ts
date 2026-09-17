@@ -17,22 +17,22 @@ import userRoutes from "./routes/user.routes";
 
 const app: Application = express();
 
-// --- Global middleware (order matters) ---
+// Global middleware
 
-// 1. Security headers first — sets things like X-Content-Type-Options,
+//  Security headers first sets things like X-Content-Type-Options,
 //    Strict-Transport-Security, etc. before any route logic runs.
 app.use(helmet());
 
-// 2. Strict CORS — only allow-listed origins may call this API from a browser.
+// Strict CORS only allow-listed origins may call this API from a browser.
 app.use(cors(corsOptions));
 
-// 3. Observability — log every request, including rejected/failed ones.
+// Observability log every request, including rejected/failed ones.
 app.use(observabilityMiddleware);
 
-// 4. Body parsing — must come before routes that read req.body.
+// Body parsing must come before routes that read req.body.
 app.use(express.json());
 
-// --- Routes ---
+// Routes
 
 app.get("/", (req: Request, res: Response) => {
   res.status(200).json({ status: "ok", message: "Auth API is running" });
@@ -41,7 +41,7 @@ app.get("/", (req: Request, res: Response) => {
 app.use("/", authRoutes); // exposes /register and /login
 app.use("/api/users", userRoutes); // protected, RBAC-gated
 
-// --- 404 fallback ---
+// 404 fallback
 app.use((req: Request, res: Response) => {
   res.status(404).json({ error: "Route not found" });
 });
