@@ -3,12 +3,12 @@ import { userService } from "../services/user.service";
 import { CreateUserInput } from "../types/user.types";
 
 export const userController = {
-  // GET /api/users — ADMIN only (enforced by route-level middleware, not here)
+  // GET /api/users ADMIN only (enforced by route-level middleware, not here)
   getAll(req: Request, res: Response): void {
     res.status(200).json(userService.findAll());
   },
 
-  // GET /api/users/:id — ADMIN, or the user viewing their own record
+  // GET /api/users/:id ADMIN, or the user viewing their own record
   getById(req: Request, res: Response): void {
     const user = userService.findById(req.params.id);
     if (!user) {
@@ -19,7 +19,7 @@ export const userController = {
   },
 
   /**
-   * POST /api/users — ADMIN only.
+   * POST /api/users ADMIN only.
    * Unlike public /register, this endpoint DOES trust the `role` field,
    * because it's protected by authenticateToken + authorizeRole(ADMIN)
    * at the route level — only a verified admin can reach this handler.

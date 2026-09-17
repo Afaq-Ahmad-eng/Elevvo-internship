@@ -5,11 +5,11 @@ import { CreateUserInput, LoginInput, Role } from "../types/user.types";
 
 export const authController = {
   /**
-   * POST /register — public signup endpoint.
+   * POST /register public signup endpoint.
    *
    * SECURITY NOTE: even if a client sends { "role": "ADMIN" } in the body,
    * we deliberately IGNORE it and force Role.USER. Trusting a client-supplied
-   * role on a public endpoint would let anyone self-promote to admin —
+   * role on a public endpoint would let anyone self-promote to admin
    * a classic privilege-escalation bug. Admin accounts must be created
    * through a separate, protected, admin-only endpoint (see user.controller.ts).
    */
@@ -36,14 +36,14 @@ export const authController = {
       name: body.name,
       email: body.email,
       password: body.password,
-      role: Role.USER, // hardcoded — client input is never trusted here
+      role: Role.USER
     });
 
     res.status(201).json(safeUser);
   },
 
   /**
-   * POST /login — validates credentials and issues a JWT.
+   * POST /login validates credentials and issues a JWT.
    */
   async login(req: Request, res: Response): Promise<void> {
     const body = req.body as LoginInput;
@@ -61,8 +61,7 @@ export const authController = {
         res.status(401).json({ error: err.message });
         return;
       }
-      // Unexpected error — don't leak internals to the client.
-      console.error("Unexpected login error:", err);
+      // Unexpected error don't leak internals to the client.
       res.status(500).json({ error: "Something went wrong" });
     }
   },
