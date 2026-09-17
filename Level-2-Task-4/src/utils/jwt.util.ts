@@ -1,7 +1,7 @@
 import jwt, { SignOptions } from "jsonwebtoken";
 import { JwtPayload } from "../types/jwt.types";
 
-// Fail fast at startup if JWT_SECRET isn't configured — better to crash
+// Fail fast at startup if JWT_SECRET isn't configured better to crash
 // immediately with a clear error than to silently sign tokens with
 // "undefined" as the secret, which would be a serious security hole.
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -18,7 +18,7 @@ const JWT_EXPIRES_IN = (process.env.JWT_EXPIRES_IN ||
 
 /**
  * Signs a new JWT containing the given payload.
- * The token is signed (tamper-evident) but NOT encrypted — anyone
+ * The token is signed (tamper-evident) but NOT encrypted anyone
  * with the token can decode and read the payload. Never put secrets
  * (passwords, raw PII) inside it.
  */
@@ -29,7 +29,7 @@ export function signToken(payload: JwtPayload): string {
 
 /**
  * Verifies a token's signature and expiry.
- * Throws if the token is invalid, tampered with, or expired —
+ * Throws if the token is invalid, tampered with, or expired
  * callers (the auth middleware) are expected to catch this.
  */
 export function verifyToken(token: string): JwtPayload {
