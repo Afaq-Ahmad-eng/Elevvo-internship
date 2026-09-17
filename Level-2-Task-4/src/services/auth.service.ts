@@ -16,13 +16,12 @@ export class InvalidCredentialsError extends Error {
 
 export const authService = {
   async login(input: LoginInput): Promise<{ token: string }> {
-    const user = userService.findByEmailInternal(input.email);
-
+    const user = userService.findByEmailInternal(input.email);    
     // Same error whether the user doesn't exist OR the password is wrong.
     if (!user) {
       throw new InvalidCredentialsError();
     }
-
+    
     const passwordMatches = await comparePassword(
       input.password,
       user.passwordHash

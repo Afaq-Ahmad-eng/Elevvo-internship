@@ -2,12 +2,11 @@ import { randomUUID } from "crypto";
 import { User, SafeUser, CreateUserInput, Role } from "../types/user.types";
 import { hashPassword } from "../utils/password.util";
 
-// Mock in-memory data store (replaced by PostgreSQL + Prisma in Task 5).
 const users: User[] = [];
 
 /**
  * Strips the passwordHash off a User before it's ever sent in a response.
- * Every controller MUST pass data through this before responding —
+ * Every controller MUST pass data through this before responding
  * this is the single choke point that prevents password hashes leaking.
  */
 function toSafeUser(user: User): SafeUser {
@@ -25,10 +24,10 @@ export const userService = {
     return user ? toSafeUser(user) : undefined;
   },
 
-  // Internal-only lookup — returns the FULL user including passwordHash.
+  // Internal-only lookup returns the FULL user including passwordHash.
   // Only auth.service.ts should call this, to verify login credentials.
   findByEmailInternal(email: string): User | undefined {
-    return users.find((u) => u.email === email);
+      return users.find((u) => u.email === email);
   },
 
   async create(input: CreateUserInput): Promise<SafeUser> {
