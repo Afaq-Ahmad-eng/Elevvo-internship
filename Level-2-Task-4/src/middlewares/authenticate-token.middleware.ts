@@ -18,7 +18,7 @@ export function authenticateToken(
 ): void {
   const authHeader = req.header("Authorization");
 
-  // Expect exactly "Bearer <token>" — anything else is rejected.
+  // Expect exactly "Bearer <token>" anything else is rejected.
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     res.status(401).json({ error: "Missing or malformed Authorization header" });
     return;
@@ -31,7 +31,7 @@ export function authenticateToken(
     req.user = payload; // now typed thanks to src/types/express/index.d.ts
     next();
   } catch (err) {
-    // Covers expired tokens, invalid signatures, and tampered payloads —
+    // Covers expired tokens, invalid signatures, and tampered payloads
     // we don't need to distinguish these to the client, just reject.
     res.status(401).json({ error: "Invalid or expired token" });
   }
