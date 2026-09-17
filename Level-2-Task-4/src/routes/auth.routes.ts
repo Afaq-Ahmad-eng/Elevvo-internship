@@ -4,7 +4,7 @@ import { loginRateLimiter } from "../middlewares/rate-limit.middleware";
 
 const router = Router();
 
-// Public — no auth required to sign up.
+// Public no auth required to sign up.
 router.post("/register", authController.register);
 
 // Public, but rate-limited to slow down brute-force attempts.
