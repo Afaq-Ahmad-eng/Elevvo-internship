@@ -14,7 +14,7 @@ export class AppError extends Error {
 }
 
 /**
- * Central error-handling middleware — MUST be registered last, after all
+ * Central error-handling middleware MUST be registered last, after all
  * routes, per Express convention (4-argument signature is what tells
  * Express this is an error handler, not regular middleware).
  */

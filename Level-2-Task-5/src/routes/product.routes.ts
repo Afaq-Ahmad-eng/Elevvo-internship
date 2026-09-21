@@ -7,7 +7,7 @@ import { Role } from "@prisma/client";
 
 const router = Router();
 
-// Public browsing — no auth required to view the catalog.
+// Public browsing no auth required to view the catalog.
 router.get("/", asyncHandler(productController.getAll));
 router.get("/:id", asyncHandler(productController.getById));
 

@@ -5,7 +5,7 @@ import { Role } from "@prisma/client";
 import { AppError } from "../middlewares/error-handler.middleware";
 
 export const userController = {
-  // GET /api/users — ADMIN only (enforced at the route level)
+  // GET /api/users ADMIN only (enforced at the route level)
   async getAll(req: Request, res: Response): Promise<void> {
     res.status(200).json(await userService.findAll());
   },

@@ -1,25 +1,34 @@
 import { PrismaClient } from "@prisma/client";
 
-/**
- * Singleton PrismaClient instance.
- *
- * WHY THIS MATTERS: every `new PrismaClient()` opens its own connection pool.
- * With hot-reload tools like ts-node-dev, importing PrismaClient naively in
- * multiple files (or re-instantiating on every file change) can quickly
- * exhaust Supabase's connection limit, especially since we're already going
- * through a pooler (pgbouncer). Exporting ONE shared instance from this file,
- * and importing it everywhere else, guarantees only one pool exists for the
- * whole running process.
- */
-export const prisma = new PrismaClient({
-  // Uncomment to see every generated SQL query while debugging locally:
-  // log: ["query", "warn", "error"],
-});
+declare global {
+  var prisma: PrismaClient | undefined;
+}
 
-/**
- * Gracefully closes the database connection pool on process shutdown,
- * so connections aren't left dangling against Supabase.
- */
+const createPrismaClient = (): PrismaClient => {
+  return new PrismaClient({
+    log:
+      process.env.NODE_ENV === "development"
+        ? [
+            { emit: "event", level: "query" },
+            { emit: "stdout", level: "error" },
+            { emit: "stdout", level: "info" },
+            { emit: "stdout", level: "warn" },
+          ]
+        : [{ emit: "stdout", level: "error" }],
+    errorFormat: process.env.NODE_ENV === "production" ? "minimal" : "pretty",
+  });
+};
+
+export const prisma = globalThis.prisma ?? createPrismaClient();
+
+if (process.env.NODE_ENV !== "production") {
+  globalThis.prisma = prisma;
+}
+
+export async function assertDatabaseConnection(): Promise<void> {
+  await prisma.$queryRaw`SELECT 1`;
+}
+
 export async function disconnectPrisma(): Promise<void> {
   await prisma.$disconnect();
 }

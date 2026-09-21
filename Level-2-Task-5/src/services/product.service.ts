@@ -28,7 +28,7 @@ export const productService = {
         }
       : {};
 
-    // Run the paginated query and the total count together — needed so
+    // Run the paginated query and the total count together needed so
     // the client can calculate total pages, not just what's on this page.
     const [items, total] = await prisma.$transaction([
       prisma.product.findMany({

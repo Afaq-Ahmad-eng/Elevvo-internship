@@ -7,7 +7,7 @@ import { AppError } from "../middlewares/error-handler.middleware";
 
 export const authController = {
   /**
-   * POST /register — public. Always forces Role.USER regardless of what
+   * POST /register public. Always forces Role.USER regardless of what
    * the client sends, to prevent privilege escalation via signup.
    */
   async register(req: Request, res: Response): Promise<void> {
@@ -27,7 +27,7 @@ export const authController = {
 
     const safeUser = await userService.create({
       ...body,
-      role: Role.USER, // hardcoded — never trust client input here
+      role: Role.USER, // hardcoded never trust client input here
     });
 
     res.status(201).json(safeUser);

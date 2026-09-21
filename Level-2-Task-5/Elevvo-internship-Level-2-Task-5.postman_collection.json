@@ -1,0 +1,368 @@
+{
+  "info": {
+    "_postman_id": "d4eb2572-0458-421f-91de-1a9184a6bc31",
+    "name": "Elevvo-internship-Level-2-Task-5",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "48243340",
+    "_collection_link": "https://go.postman.co/collection/48243340-d4eb2572-0458-421f-91de-1a9184a6bc31?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "User-registration",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Ahmad\",\r\n    \"email\": \"ahmad04@gmail.com\",\r\n    \"password\": \"Afaq@200920017\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Base_URL}}/register",
+              "host": [
+                "{{Base_URL}}"
+              ],
+              "path": [
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "User-login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"ahmad04@gmail.com\",\r\n    \"password\": \"Afaq@200920017\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Base_URL}}/login",
+              "host": [
+                "{{Base_URL}}"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "checkout",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlYjc0MmQzYy01NzNmLTRlOTQtOTQ0NC0xZjc4MzdmZTZlNGUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3OTAwMDg1NjEsImV4cCI6MTc5MDAwOTQ2MX0.0wna2l8M--fUvERWzFa8xO7KkE0A91PqrXWxPR6HbYY",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"items\":[\r\n{\r\n      \"productId\": \"d03dd6b7-841d-4bd2-b7b6-4d93f2333673\",\r\n      \"quantity\": 2\r\n}\r\n]}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Base_URL}}/api/orders",
+              "host": [
+                "{{Base_URL}}"
+              ],
+              "path": [
+                "api",
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get-orders",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlYjc0MmQzYy01NzNmLTRlOTQtOTQ0NC0xZjc4MzdmZTZlNGUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3OTAwMTExNzYsImV4cCI6MTc5MDAxMjA3Nn0.36JGYiRAzX1TcAhsxHEUq4h3UeHhm0xFT4jisRS36Uk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Afaq Ahmad\",\r\n    \"email\": \"koinahe193@gmail.com\",\r\n    \"password\": \"Afaq@200920017\"\r\n}"
+            },
+            "url": {
+              "raw": "{{Base_URL}}/api/orders",
+              "host": [
+                "{{Base_URL}}"
+              ],
+              "path": [
+                "api",
+                "orders"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Create-Product",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlYjc0MmQzYy01NzNmLTRlOTQtOTQ0NC0xZjc4MzdmZTZlNGUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODk3MzA0MzgsImV4cCI6MTc4OTczMTMzOH0.Ct9RPoREDjsme04WaVl7Ky7CrJOrllDkH4X2INNJ6pg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Sony WH-1000XM5 Wireless Headphones\",\r\n    \"description\": \"Industry-leading active noise-canceling over-ear headphones with 30-hour battery life and clear calling.\",\r\n    \"price\": 349.99,\r\n    \"stock\": 12,\r\n    \"categoryId\": \"56002f51-e6bf-47ef-9988-556af2d56f26\"\r\n  }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Base_URL}}/api/products",
+              "host": [
+                "{{Base_URL}}"
+              ],
+              "path": [
+                "api",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get-Products",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlYjc0MmQzYy01NzNmLTRlOTQtOTQ0NC0xZjc4MzdmZTZlNGUiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3ODk3MzA0MzgsImV4cCI6MTc4OTczMTMzOH0.Ct9RPoREDjsme04WaVl7Ky7CrJOrllDkH4X2INNJ6pg",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Keychron K2 Mechanical Keyboard\",\r\n    \"description\": \"75% compact wireless mechanical keyboard with Gateron Brown switches and RGB backlighting.\",\r\n    \"price\": 89.99,\r\n    \"stock\": 25,\r\n    \"categoryId\": \"REPLACE_WITH_ACTUAL_CATEGORY_ID\"\r\n  }"
+            },
+            "url": {
+              "raw": "{{Base_URL}}/api/products",
+              "host": [
+                "{{Base_URL}}"
+              ],
+              "path": [
+                "api",
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get-Product",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Keychron K2 Mechanical Keyboard\",\r\n    \"description\": \"75% compact wireless mechanical keyboard with Gateron Brown switches and RGB backlighting.\",\r\n    \"price\": 89.99,\r\n    \"stock\": 25,\r\n    \"categoryId\": \"REPLACE_WITH_ACTUAL_CATEGORY_ID\"\r\n  }"
+            },
+            "url": {
+              "raw": "{{Base_URL}}/api/products/c1598c37-af5d-4052-93a5-eff810f0aea2",
+              "host": [
+                "{{Base_URL}}"
+              ],
+              "path": [
+                "api",
+                "products",
+                "c1598c37-af5d-4052-93a5-eff810f0aea2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "Create-user",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NDYwNmQ0OC0yNzMxLTRjNDEtOTZjZS03MzBlMjExMzE1ZDEiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3OTAwMTE0NjksImV4cCI6MTc5MDAxMjM2OX0.sfzqllKQVoY7Ykn9bAL8YIuOVyjd40oFQ5haKI_mZSE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Nazakat Ali\",\r\n    \"email\": \"nazakataligmail.com\",\r\n    \"password\": \"Nazakat@200920017\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{Base_URL}}/api/users",
+              "host": [
+                "{{Base_URL}}"
+              ],
+              "path": [
+                "api",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get-users",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NDYwNmQ0OC0yNzMxLTRjNDEtOTZjZS03MzBlMjExMzE1ZDEiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3OTAwMTE0NjksImV4cCI6MTc5MDAxMjM2OX0.sfzqllKQVoY7Ykn9bAL8YIuOVyjd40oFQ5haKI_mZSE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Base_URL}}/api/users",
+              "host": [
+                "{{Base_URL}}"
+              ],
+              "path": [
+                "api",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get-user",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3NDYwNmQ0OC0yNzMxLTRjNDEtOTZjZS03MzBlMjExMzE1ZDEiLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE3OTAwMTE0NjksImV4cCI6MTc5MDAxMjM2OX0.sfzqllKQVoY7Ykn9bAL8YIuOVyjd40oFQ5haKI_mZSE",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{Base_URL}}/api/users/9161fe5e-511b-4999-8b99-4a0b487a64a9",
+              "host": [
+                "{{Base_URL}}"
+              ],
+              "path": [
+                "api",
+                "users",
+                "9161fe5e-511b-4999-8b99-4a0b487a64a9"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Check-Api",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"username\": \"Afaq Ahmad\",\r\n    \"useremail\": \"koinahe193@gmail.com\",\r\n    \"userpassword\": \"Afaq@200920017\"\r\n}"
+        },
+        "url": {
+          "raw": "{{Base_URL}}",
+          "host": [
+            "{{Base_URL}}"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

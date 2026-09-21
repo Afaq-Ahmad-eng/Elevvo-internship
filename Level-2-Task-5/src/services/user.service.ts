@@ -4,7 +4,7 @@ import { hashPassword } from "../utils/password.util";
 import { RegisterInput } from "../types/dto.types";
 
 // Prisma's generated `select` type lets us define, ONCE, exactly which
-// columns are safe to return — passwordHash is deliberately excluded here.
+// columns are safe to return passwordHash is deliberately excluded here.
 // Every query in this service reuses this same select object, so there is
 // a single place that guarantees the hash never leaks into a response.
 const safeUserSelect = {
@@ -24,7 +24,7 @@ export const userService = {
     return prisma.user.findUnique({ where: { id }, select: safeUserSelect });
   },
 
-  // Internal-only lookup — returns the FULL row including passwordHash.
+  // Internal-only lookup returns the FULL row including passwordHash.
   // Only auth.service.ts should call this, to verify login credentials.
   findByEmailInternal(email: string) {
     return prisma.user.findUnique({ where: { email } });

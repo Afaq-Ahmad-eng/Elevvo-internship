@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { Role } from "@prisma/client";
 
 /**
- * RBAC gate. Must run AFTER authenticateToken — it only checks the role on
+ * RBAC gate. Must run AFTER authenticateToken it only checks the role on
  * an already-authenticated request, it does not verify the token itself.
  */
 export function authorizeRole(...allowedRoles: Role[]) {

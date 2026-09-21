@@ -6,7 +6,7 @@ import { AppError } from "../middlewares/error-handler.middleware";
 export const productController = {
   /**
    * GET /api/products?take=10&skip=0&search=shirt
-   * Public — browsing the catalog doesn't require authentication.
+   * Public browsing the catalog doesn't require authentication.
    */
   async getAll(req: Request, res: Response): Promise<void> {
     const take = req.query.take ? Number(req.query.take) : undefined;

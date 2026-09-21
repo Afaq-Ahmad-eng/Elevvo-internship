@@ -9,7 +9,7 @@ export const authService = {
     const user = await userService.findByEmailInternal(input.email);
 
     // Same generic error whether the email doesn't exist OR the password
-    // is wrong — prevents user enumeration.
+    // is wrong prevents user enumeration.
     if (!user) {
       throw new AppError(401, "Invalid email or password");
     }

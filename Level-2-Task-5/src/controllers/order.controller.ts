@@ -5,7 +5,7 @@ import { AppError } from "../middlewares/error-handler.middleware";
 
 export const orderController = {
   /**
-   * POST /api/orders — requires authentication (see order.routes.ts).
+   * POST /api/orders requires authentication (see order.routes.ts).
    * req.user is guaranteed populated here because authenticateToken runs first.
    */
   async checkout(req: Request, res: Response): Promise<void> {

@@ -1,10 +1,10 @@
 import dotenv from "dotenv";
-dotenv.config({path: ".env.example"});
+dotenv.config();
 
 import app from "./app";
 import { disconnectPrisma } from "./config/prisma";
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 const server = app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
