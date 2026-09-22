@@ -1,0 +1,26 @@
+version: "3.8"
+
+# This project's database (PostgreSQL, via Supabase) is hosted remotely,
+# so only Redis needs to run locally via Docker — the app itself connects
+# out to Supabase and to this local Redis container.
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: task6-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    # Persists data to disk (appendonly) so cached/rate-limit data survives
+    # a container restart during local development — not strictly required
+    # for a cache (it's fine to lose it), but useful so rate-limit counters
+    # aren't reset every time you restart the container while testing.
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+volumes:
+  redis-data:
